@@ -31,7 +31,7 @@ SOURCES
     "application.cc"
     "assets.cc"
     ...
-	"tools/desktop/icons.c"
+	"tools/desktop/icons.c"     # ← THÊM DÒNG NÀY
     "tools/desktop/desktop.cc"  # ← THÊM DÒNG NÀY
     ...
 ```
