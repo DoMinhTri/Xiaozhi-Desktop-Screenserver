@@ -1,7 +1,9 @@
 #        CÓ 3 PHẦN CHÍNH
+```
 1/ Hướng dẫn cài đặt
 2/ Hướng dẫn thay đổi ảnh nền
-
+3/ Hướng dẫn tùy chỉnh giao diện
+```
 #####################################################
 # 1 Hướng Dẫn Cài Đặt Desktop (Screen Saver)
 # 📋 Danh Sách Công Việc trong 6 bước
