@@ -1,13 +1,15 @@
-#        CÓ 3 PHẦN CHÍNH
-```
-1/ Hướng dẫn cài đặt
-2/ Hướng dẫn thay đổi ảnh nền
-3/ Hướng dẫn tùy chỉnh giao diện
-```
-#####################################################
-# 1 Hướng Dẫn Cài Đặt Desktop (Screen Saver)
-# 📋 Danh Sách Công Việc trong 6 bước
-#####################################################
+# Hướng Dẫn Desktop (Screen Saver) cho Xiaozhi
+
+## 📑 Nội Dung Chính
+1. **Hướng dẫn cài đặt** - Các bước thiết lập Desktop vào project
+2. **Hướng dẫn thay đổi hình ảnh nền** - Cách tạo và sử dụng ảnh nền
+3. **Hướng dẫn tùy chỉnh giao diện** - Chỉnh sửa text, kim, ảnh
+
+---
+
+# 📋 Phần 1: Hướng Dẫn Cài Đặt Desktop (Screen Saver)
+
+## Danh Sách Công Việc (6 Bước)
 
 ### Bước 1: Copy Files Desktop
 Sao chép 2 file này từ xiaozhivn sang project mới:
@@ -133,8 +135,6 @@ idf.py build
 - ❌ `undefined reference to Desktop::` → Kiểm tra CMakeLists.txt SOURCES có dòng desktop.cc không
 - ❌ `Application::desktop_` undefined → Kiểm tra application.h có khai báo member variable không
 
----
-
 ## 🧪 Bước 6: Test Runtime
 
 Flash và monitor:
@@ -142,19 +142,26 @@ Flash và monitor:
 idf.py build flash monitor
 ```
 
-#####################################################
-# 2 Hướng Dẫn thay đổi ảnh nền
-#####################################################
+---
 
-#  Tạo file hex cho ảnh nền
-// Tìm 1 ảnh nền ưng ý
-// vào web : https://lvgl.io/tools/imageconverter
-// chọn LVGL v9, RGB 565 -> Convert và tải về file .c
+# 🖼️ Phần 2: Hướng Dẫn Thay Đổi Hình Ảnh Nền
 
-#  Copy mã hex vào file icons.c
-// VD : file ảnh có tên matdongho.png tải về file matdongho.c
-// Copy các dòng này từ matdongho.c vào file icons.c
+## Bước 1: Tạo File Hex Cho Ảnh Nền
 
+1. Tìm 1 ảnh nền ưng ý (PNG, JPG, v.v.)
+2. Vào web: [https://lvgl.io/tools/imageconverter](https://lvgl.io/tools/imageconverter)
+3. Chọn cài đặt:
+   - **LVGL version**: v9
+   - **Color format**: RGB 565
+4. Click **Convert** và tải về file `.c`
+
+## Bước 2: Copy Mã Hex Vào File icons.c
+
+Ví dụ: nếu ảnh có tên `matdongho.png` → tải về file `matdongho.c`
+
+Copy các dòng này từ `matdongho.c` vào file [icons.c](icons.c):
+
+```cpp
 #ifndef LV_ATTRIBUTE_IMAGE_MATDONGHO
 #define LV_ATTRIBUTE_IMAGE_MATDONGHO
 #endif
@@ -171,15 +178,32 @@ const lv_image_dsc_t matdongho = {
   .data_size = 102400 * 2,
   .data = matdongho_map,
 };
+```
 
-//  Thay  tên ảnh nền vào code từ dòng 94
-background.data
-&background
+## Bước 3: Khai Báo Extern Trong icons.h
 
+Thêm vào file [icons.h](icons.h):
 
-#####################################################
-# 3 🎨 Hướng Dẫn Tùy Chỉnh Giao Diện Screen Saver
-#####################################################
+```cpp
+extern const lv_image_dsc_t matdongho;
+```
+
+## Bước 4: Sử Dụng Ảnh Nền Trong desktop.h
+
+Sửa [desktop.h](desktop.h) để sử dụng ảnh:
+
+```cpp
+// Thay dòng này:
+// lv_image_dsc_t background = {0};
+
+// Thành:
+extern const lv_image_dsc_t matdongho;
+lv_image_dsc_t background = matdongho;
+```
+
+---
+
+# 🎨 Phần 3: Hướng Dẫn Tùy Chỉnh Giao Diện Screen Saver
 
 ## 📝 1. Tùy Chỉnh Text (Thời Gian)
 
@@ -292,8 +316,6 @@ lv_obj_set_style_shadow_ofs_x(ui_time_label, 3, LV_PART_MAIN);
 lv_obj_set_style_shadow_ofs_y(ui_time_label, 3, LV_PART_MAIN);
 ```
 
----
-
 ## ⏰ 2. Tùy Chỉnh Kim Đồng Hồ (Hour, Minute, Second Hands)
 
 ### 2.1 Tùy Chỉnh Kim Giờ (Hour Hand)
@@ -387,8 +409,6 @@ lv_obj_set_style_bg_color(center_circle_, lv_color_hex(0xFFFFFF), LV_PART_MAIN);
 // Thay đổi opacity
 lv_obj_set_style_bg_opa(center_circle_, LV_OPA_100, LV_PART_MAIN);
 ```
-
----
 
 ## 🖼️ 3. Tùy Chỉnh Hình Ảnh Nền (Background Image)
 
@@ -526,3 +546,11 @@ lv_obj_move_to_index(obj, index);                   // Chỉnh Z-index
 4. **UpdateTimeLabel()**: Nếu đổi định dạng, nhớ cập nhật hàm này
 
 5. **Scale**: Giá trị 256 = 100%, không phải 100 = 100%
+
+---
+
+## 📚 Tài Liệu Tham Khảo
+
+- **LVGL Documentation**: https://docs.lvgl.io/
+- **Image Converter**: https://lvgl.io/tools/imageconverter
+- **Color Picker**: Dùng các giá trị hex RGB565 (0xRRGGBB)
