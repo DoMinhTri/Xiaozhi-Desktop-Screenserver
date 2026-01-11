@@ -1,4 +1,4 @@
-        CÓ 3 PHẦN CHÍNH
+#        CÓ 3 PHẦN CHÍNH
 1/ Hướng dẫn cài đặt
 2/ Hướng dẫn thay đổi ảnh nền
 
@@ -27,6 +27,7 @@ SOURCES
     "application.cc"
     "assets.cc"
     ...
+	"tools/desktop/icons.c"
     "tools/desktop/desktop.cc"  # ← THÊM DÒNG NÀY
     ...
 ```
@@ -113,13 +114,6 @@ if (bits & MAIN_EVENT_CLOCK_TICK) {
         ESP_LOGW(TAG, "[TICK] desktop_ is nullptr!");
     }
     
-    // Check alarms every second
-    AlarmManager::getInstance().checkAlarms();
-
-    // Print the debug info every 10 seconds
-    if (clock_ticks_ % 10 == 0) {
-        SystemInfo::PrintHeapStats();
-    }
 }
 ```
 
