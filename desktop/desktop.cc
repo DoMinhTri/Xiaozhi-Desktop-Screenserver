@@ -260,7 +260,7 @@ void Desktop::UpdateTimeLabel() {
     time_t now = time(NULL);
     struct tm *info = localtime(&now);
     lv_label_set_text_fmt(ui_time_label, "%02d:%02d:%02d", info->tm_hour, info->tm_min, info->tm_sec);
-    ESP_LOGI(TAG, "Updated time: %02d:%02d:%02d", info->tm_hour, info->tm_min, info->tm_sec);
+    // ESP_LOGI(TAG, "Updated time: %02d:%02d:%02d", info->tm_hour, info->tm_min, info->tm_sec);
 }
 
 void Desktop::CreateAnalogClock() {
@@ -342,7 +342,7 @@ void Desktop::UpdateClockHands() {
     // Áp dụng xoay cho kim giờ
     if (hour_hand_) {
         lv_obj_set_style_transform_rotation(hour_hand_, hour_rotation, LV_PART_MAIN);
-        ESP_LOGI(TAG, "DEBUG: hour=%d, minute=%d, rotation=%d (0.1deg unit), actual_degrees=%d", hour, minute, hour_rotation, hour_rotation / 10);
+        //ESP_LOGI(TAG, "DEBUG: hour=%d, minute=%d, rotation=%d (0.1deg unit), actual_degrees=%d", hour, minute, hour_rotation, hour_rotation / 10);
     }
 
     // Tính độ xoay cho kim phút (LVGL dùng 0.1 độ)
@@ -351,7 +351,7 @@ void Desktop::UpdateClockHands() {
     // Áp dụng xoay cho kim phút
     if (minute_hand_) {
         lv_obj_set_style_transform_rotation(minute_hand_, minute_rotation, LV_PART_MAIN);
-        ESP_LOGI(TAG, "DEBUG: minute=%d, rotation=%d (0.1deg unit), actual_degrees=%d", minute, minute_rotation, minute_rotation / 10);
+        //ESP_LOGI(TAG, "DEBUG: minute=%d, rotation=%d (0.1deg unit), actual_degrees=%d", minute, minute_rotation, minute_rotation / 10);
     }
 
     // Tính độ xoay cho kim giây (LVGL dùng 0.1 độ)
@@ -359,7 +359,7 @@ void Desktop::UpdateClockHands() {
     int second_rotation = second * 60;
     // Áp dụng xoay cho kim giây
     lv_obj_set_style_transform_rotation(second_hand_, second_rotation, LV_PART_MAIN);
-    ESP_LOGI(TAG, "DEBUG: second=%d, rotation=%d (0.1deg unit), actual_degrees=%d", second, second_rotation, second_rotation / 10);
+    // ESP_LOGI(TAG, "DEBUG: second=%d, rotation=%d (0.1deg unit), actual_degrees=%d", second, second_rotation, second_rotation / 10);
 }
 
 void Desktop::DestroyAnalogClock() {
