@@ -203,7 +203,7 @@ lv_image_dsc_t background = matdongho;
 
 ---
 
-# 🎨 Phần 3: Hướng Dẫn Tùy Chỉnh Giao Diện Screen Saver
+# 🎨 Phần 3: Tùy Chỉnh Giao Diện Screen Saver
 
 ## 📝 1. Tùy Chỉnh Text (Thời Gian)
 
